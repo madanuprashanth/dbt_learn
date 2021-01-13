@@ -2,15 +2,25 @@ version: 2
 
 models:
     - name: stg_customers
+      description: Staged customer data for our Jaffle shop
       columns:
         - name: customer_id
+          description: The primary key for Customers
           tests: 
             - unique
             - not_null
 
     - name: stg_orders
+      description: Stage ordered data from our Jaffle shop
       columns: 
+        - name: order_id
+          description: The primary key for orders
+          tests:
+           - unique
+           - not_null
+
         - name: status
+          description: '{{ doc("order_status") }}'
           tests:
             - accepted_values:
                 values:
@@ -19,4 +29,3 @@ models:
                  - returned
                  - placed
                  - return_pending
-       
